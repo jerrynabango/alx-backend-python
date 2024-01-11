@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from typing import Any, Sequence, Union
 """Duck typing - first element of a sequence"""
+from typing import Any, Sequence, Union
 
 
 def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:

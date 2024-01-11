@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
+""" More involved type annotations"""
 from typing import Mapping, Any, Union, TypeVar, Optional
 
 T = TypeVar('T')
-""" More involved type annotations"""
 
 
 def safely_get_value(dct: Mapping, key: Any,

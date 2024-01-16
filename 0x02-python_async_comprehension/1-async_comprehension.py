@@ -2,8 +2,6 @@
 """Async Comprehensions"""
 
 from typing import Generator
-import asyncio
-
 
 async_generator = __import__('0-async_generator').async_generator
 
@@ -15,6 +13,3 @@ async def async_comprehension() -> Generator[float, None, None]:
     then return the 10 random numbers.
     """
     return [compre async for compre in async_generator()]
-
-if __name__ == "__main__":
-    asyncio.run(async_comprehension())

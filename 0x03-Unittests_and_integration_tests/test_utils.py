@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-Test cases for utils.py
-"""
+"""utils.py tests"""
 import unittest
 from parameterized import parameterized
 from typing import (
@@ -12,9 +10,7 @@ from utils import access_nested_map, get_json, memoize
 
 
 class TestAccessNestedMap(unittest.TestCase):
-    """
-    Nested map access tests
-    """
+    """Nested Map Access"""
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
@@ -24,9 +20,7 @@ class TestAccessNestedMap(unittest.TestCase):
             self, nested_map: Dict,
             path: Tuple[str], expected: Union[int, Dict]
             ) -> None:
-        """
-        Nested map access test
-        """
+        """Nested Map Access"""
         self.assertEqual(
             expected,
             access_nested_map(nested_map, path)
@@ -39,26 +33,20 @@ class TestAccessNestedMap(unittest.TestCase):
     def test_access_nested_map_exception(
             self, nested_map: Dict, path: Tuple[str]
             ) -> None:
-        """
-        Nested map access exception test
-        """
+        """Nested Map Access"""
         with self.assertRaises(KeyError):
             access_nested_map(nested_map, path)
 
 
 class TestGetJson(unittest.TestCase):
-    """
-    Tests for get_json
-    """
+    """Tests for get_json"""
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False}),
     ])
     def test_get_json(self, test_url: str,
                       test_payload: Dict[str, bool]) -> None:
-        """
-        Get JSON test
-        """
+        """Get JSON test"""
         config = {'return_value.json.return_value': test_payload}
         with patch('requests.get', autospec=True, **config) as mockRequestGet:
             self.assertEqual(get_json(test_url), test_payload)
@@ -66,17 +54,13 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """
-    Memoize tests
-    """
+    """Test Memoize"""
     def test_memoize(self) -> None:
         """
         Memoize function test
         """
         class TestClass:
-            """
-            Test class
-            """
+            """Test class"""
             def a_method(self):
                 return 42
 

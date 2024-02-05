@@ -23,11 +23,11 @@ class TestGithubOrgClient(unittest.TestCase):
     def test_public_repos_url(self) -> None:
         """Public Repos url test"""
         config = {
-            'return_value.repos_url': "https://api.github.com/jerry/repos/alx"
+            'return_value.repos_url': "https://api.github.com/jerry/repos/"
         }
         with patch('client.GithubOrgClient.org',
                    new_callable=PropertyMock, **config) as mockOrg:
-            test = GithubOrgClient('alx')
+            test = GithubOrgClient("jerry")
             self.assertEqual(
                 test._public_repos_url,
                 mockOrg.return_value['repos_url']
@@ -42,11 +42,11 @@ class TestGithubOrgClient(unittest.TestCase):
             {'name': 'dot-net', 'license': {'key': 'bsl-1.0'}}
         ]
         propValue = {
-            'return_value': 'https://api.github.com/orgs/google/repos'
+            'return_value': "https://api.github.com/orgs/google/repos"
         }
         with patch('client.GithubOrgClient._public_repos_url',
                    new_callable=PropertyMock, **propValue) as mockPublicRepo:
-            test = GithubOrgClient('google')
+            test = GithubOrgClient("google")
             self.assertEqual(
                 test.public_repos(), ['cpp-netlib', 'dagger', 'dot-net']
             )
